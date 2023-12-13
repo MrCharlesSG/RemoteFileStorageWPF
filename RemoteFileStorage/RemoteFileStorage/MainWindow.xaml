@@ -1,0 +1,76 @@
+﻿<Window x:Class="RemoteFileStorage.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RemoteFileStorage"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid
+        Background="{StaticResource GradientBackground}">
+        <ListBox
+            x:Name="lbItems"
+            DisplayMemberPath="Name"
+            SelectionChanged="LbItems_SelectionChanged"
+            Height="250" Margin="50,92,470,92"/>
+        <Label Content="Choose directory:" HorizontalAlignment="Left" Margin="50,43,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.842,0.579"/>
+        <ComboBox 
+            x:Name="cbDirectories"
+            IsEditable="True"
+            KeyDown="CbDirectories_KeyDown"
+            TextBoxBase.TextChanged="CbDirectories_TextChanged"
+            HorizontalAlignment="Left" Margin="180,45,0,0" VerticalAlignment="Top" Width="150"/>
+        <Button 
+            x:Name="btnUpload"
+            Content="Upload"
+            Background="Black"
+            Click="BtnUpload_Click"
+            HorizontalAlignment="Left" Margin="50,364,0,0" VerticalAlignment="Top" Width="70"/>
+        <Button 
+            x:Name="btnDownload"
+            Content="Download"
+            Background="DarkOliveGreen"
+            Click="BtnDownload_Click"
+            HorizontalAlignment="Left" Margin="155,364,0,0" VerticalAlignment="Top" Width="70"/>
+        <Button 
+            x:Name="btnDelete"
+            Content="Delete"
+            Background="Red"
+            Click="BtnDelete_Click"            
+            HorizontalAlignment="Left" Margin="260,364,0,0" VerticalAlignment="Top" Width="70"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="400,45,0,50">
+            <StackPanel>
+                <Label Content="Content type:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Properties.ContentType, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="363" Height="24" />
+
+                <Label Content="Content size:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Properties.ContentLength, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" TextWrapping="Wrap" Width="363" Height="24" />
+
+                <Label Content="Date Created:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Properties.CreatedOn, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="363" Height="24" />
+
+                <Label Content="Last modified:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Properties.LastModified, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="363" Height="24" />
+
+                <Label Content="Server encrypted:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Properties.ServerEncrypted, Mode=OneWay}" IsReadOnly="True" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Height="24" />
+
+
+                <Border Width="200"
+                Height="300"
+                x:Name="pictureBorder"
+            BorderBrush="White" BorderThickness="1" Grid.RowSpan="2">
+                    <Image
+                x:Name="picture"
+                Stretch="Uniform"
+                Source="{Binding Image}"
+                />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+
+
+    </Grid>
+</Window>
